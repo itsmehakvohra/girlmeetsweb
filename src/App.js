@@ -1,9 +1,9 @@
-import girldu from "./images/girl_ducky.webp";
+import girlducky from "./images/girl_ducky.webp";
 
 function App() {
   return (
     <div>
-      <img src={girldu} />
+      <img src={girlducky} />
     </div>
   );
 }
