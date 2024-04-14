@@ -1,7 +1,9 @@
 {
   "name": "girlmeetsweb",
   "dependencies": {
+    "bootstrap": "^5.3.3",
     "react": "",
+    "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1"
   },
