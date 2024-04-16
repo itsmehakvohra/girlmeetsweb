@@ -1,13 +1,11 @@
 import { Route, Routes } from "react-router-dom";
-
-import girlducky from "./images/girl_ducky.webp";
-import { Button } from "react-bootstrap";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <Routes>
-      <img src={girlducky} />
-      <Button />
+      <Route path="/" element={<Home />} />
+      <br />
     </Routes>
   );
 }
