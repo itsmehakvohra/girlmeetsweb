@@ -1,11 +1,19 @@
-import { Col, Container, Navbar, Row } from "react-bootstrap";
+import { Col, Container, Navbar, Nav, Row } from "react-bootstrap";
 import girlducky from "../images/girl_ducky.webp";
 
-// hi
 function Home() {
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary" />
+      <Navbar>
+        <Container>
+          <Navbar.Brand>Girl Meets Web</Navbar.Brand>
+          <Navbar.Collapse>
+            <Nav>
+              <Nav.Link />
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       <Container>
         <Row>
           <Col>
