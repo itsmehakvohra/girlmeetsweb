@@ -16,17 +16,17 @@ const values = [
   "A",
 ];
 
-function createDeck() {
+export function createDeck() {
   let deck = [];
   for (let suit of suits) {
     for (let value of values) {
-      deck.push({ suit, values });
+      deck.push({ suit, value });
     }
   }
   return deck;
 }
 
-function shuffleDeck(deck) {
+export function shuffleDeck(deck) {
   for (let i = deck.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [deck[i], deck[j]] = [deck[j], deck[i]];

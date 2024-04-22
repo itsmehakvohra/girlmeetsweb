@@ -12,4 +12,7 @@ export const Table = styled.div`
   background: #003a62;
   border: 10px solid rgb(196, 196, 196);
   border-radius: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

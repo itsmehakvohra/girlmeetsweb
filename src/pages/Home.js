@@ -1,7 +1,20 @@
-import { Col, Container, Navbar, Nav, Row } from "react-bootstrap";
-import girlducky from "../images/girl_ducky.webp";
+import React, { useState } from "react";
+import { Container, Navbar, Nav, Row, Button } from "react-bootstrap";
+import { Table } from "../components/table";
+import { TableContainer } from "../components/layout/TableContainer";
+import { createDeck, shuffleDeck } from "../components/deck";
 
 function Home() {
+  const [deck, setDeck] = useState([]);
+
+  const DealNewHand = () => {
+    const newDeck = shuffleDeck(createDeck());
+    const hand = newDeck.slice(0, 5);
+    setDeck(newDeck.slice(5));
+    console.log("Dealt hand:", hand);
+    return hand;
+  };
+
   return (
     <>
       <Navbar expand="lg" className="bg-body-tertiary">
@@ -18,11 +31,17 @@ function Home() {
         </Container>
       </Navbar>
       <Container>
-        <Row>
-          <Col>
-            <img src={girlducky} />
-          </Col>
-        </Row>
+        <TableContainer>
+          <Row>
+            <Table />
+            <Button
+              style={{ backgroundColor: "#003a62", border: "none" }}
+              onClick={DealNewHand}
+            >
+              Deal Cards
+            </Button>
+          </Row>
+        </TableContainer>
       </Container>
     </>
   );
