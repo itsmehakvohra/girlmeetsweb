@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { Container, Navbar, Nav, Row, Button } from "react-bootstrap";
+import { Container, Navbar, Nav, Row, Button, Modal } from "react-bootstrap";
 import { Table } from "../components/table";
 import { TableContainer } from "../components/layout/TableContainer";
 import { createDeck, shuffleDeck } from "../components/deck";
 
 function Home() {
   const [deck, setDeck] = useState([]);
+  const [show, setShow] = useState(true);
+  const [showInputModal, setInputModal] = useState(false);
 
   const DealNewHand = () => {
     const newDeck = shuffleDeck(createDeck());
@@ -17,6 +19,43 @@ function Home() {
 
   return (
     <>
+      <Modal
+        show={show}
+        backdrop="static"
+        keyboard={false}
+        style={{ top: "30%" }}
+      >
+        <Modal.Header>
+          <Modal.Title>Girl Meets Web Poker Club ♠️</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Welcome! You can either create or join a poker game using the options
+          below.
+          <br /> <br />- M
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={""}>
+            Input Code
+          </Button>
+          <Button variant="primary" onClick={""}>
+            Create a Game
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/*Modal Input Code */}
+      <Modal
+        show={showInputModal}
+        backdrop="static"
+        keyboard={false}
+        style={{ top: "30%" }}
+      >
+        <Modal.Title>Input a Code</Modal.Title>
+      </Modal>
+
+      {/* Modal to Create a Game */}
+      <Modal></Modal>
+
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
           <Navbar.Brand>Girl Meets Web</Navbar.Brand>
