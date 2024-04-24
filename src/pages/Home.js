@@ -4,6 +4,8 @@ import { Table } from "../components/table";
 import { TableContainer } from "../components/layout/TableContainer";
 import { createDeck, shuffleDeck } from "../components/deck";
 
+import { ModalInput } from "../components/ModalInputs";
+
 function Home() {
   const [deck, setDeck] = useState([]);
   const [show, setShow] = useState(true);
@@ -15,6 +17,11 @@ function Home() {
     setDeck(newDeck.slice(5));
     console.log("Dealt hand:", hand);
     return hand;
+  };
+
+  const openInputModal = () => {
+    setShow(false);
+    setInputModal(true);
   };
 
   return (
@@ -34,7 +41,7 @@ function Home() {
           <br /> <br />- M
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={""}>
+          <Button variant="secondary" onClick={openInputModal}>
             Input Code
           </Button>
           <Button variant="primary" onClick={""}>
@@ -50,7 +57,24 @@ function Home() {
         keyboard={false}
         style={{ top: "30%" }}
       >
-        <Modal.Title>Input a Code</Modal.Title>
+        <Modal.Header>
+          <Modal.Title>Input a Code</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p className="mb-10">
+            <b>Your Name</b>
+          </p>
+          <ModalInput onChange={(e) => setName(e.target.value)} />
+          <p className="mt-20 mb-10">
+            <b>Code</b>
+          </p>
+          <ModalInput onChange={(e) => setGameCode(e.target.value)} />
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={""}>
+            Enter Game
+          </Button>
+        </Modal.Footer>
       </Modal>
 
       {/* Modal to Create a Game */}
