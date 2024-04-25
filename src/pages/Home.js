@@ -1,15 +1,24 @@
 import React, { useState } from "react";
-import { Container, Navbar, Nav, Row, Button, Modal } from "react-bootstrap";
+import {
+  Container,
+  Navbar,
+  Nav,
+  Row,
+  Button,
+  Modal,
+  InputGroup,
+} from "react-bootstrap";
 import { Table } from "../components/table";
 import { TableContainer } from "../components/layout/TableContainer";
 import { createDeck, shuffleDeck } from "../components/deck";
 
-import { ModalInput } from "../components/ModalInputs";
+import { BlindInput, ModalInput } from "../components/ModalInputs";
 
 function Home() {
   const [deck, setDeck] = useState([]);
   const [show, setShow] = useState(true);
   const [showInputModal, setInputModal] = useState(false);
+  const [showGameModal, setGameModal] = useState(false);
 
   const DealNewHand = () => {
     const newDeck = shuffleDeck(createDeck());
@@ -22,6 +31,11 @@ function Home() {
   const openInputModal = () => {
     setShow(false);
     setInputModal(true);
+  };
+
+  const openGameModal = () => {
+    setShow(false);
+    setGameModal(true);
   };
 
   return (
@@ -44,7 +58,7 @@ function Home() {
           <Button variant="secondary" onClick={openInputModal}>
             Input Code
           </Button>
-          <Button variant="primary" onClick={""}>
+          <Button variant="primary" onClick={openGameModal}>
             Create a Game
           </Button>
         </Modal.Footer>
@@ -78,7 +92,43 @@ function Home() {
       </Modal>
 
       {/* Modal to Create a Game */}
-      <Modal></Modal>
+      <Modal
+        show={showGameModal}
+        backdrop="static"
+        keyboard={false}
+        style={{ top: "30%" }}
+      >
+        <Modal.Header>
+          <Modal.Title>Create a Game</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p className="mb-10">
+            <b>Your Name</b>
+          </p>{" "}
+          <ModalInput onChange={(e) => setName(e.target.value)} />
+          <p className="mt-20 mb-10">
+            <b>Blinds (Chips)</b>
+          </p>{" "}
+          <InputGroup>
+            <BlindInput
+              placeholder="SB"
+              onChange={(e) => setSmallBlind(e.target.value)}
+            />{" "}
+            <p className="mr-10 ml-10">
+              <b>/</b>
+            </p>{" "}
+            <BlindInput
+              placeholder="BB"
+              onChange={(e) => setBigBlind(e.target.value)}
+            />
+          </InputGroup>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="primary" onClick={""}>
+            Get Started
+          </Button>
+        </Modal.Footer>
+      </Modal>
 
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
