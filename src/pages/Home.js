@@ -14,6 +14,7 @@ import { createDeck, shuffleDeck } from "../components/deck";
 
 import { BlindInput, ModalInput } from "../components/ModalInputs";
 import { BuyInButton, BuyInContainer, BuyInInput } from "../components/BuyIn";
+import { PotMarker, PotMarkerContainer } from "../components/Pot";
 
 function Home() {
   const [deck, setDeck] = useState([]);
@@ -38,6 +39,9 @@ function Home() {
     setShow(false);
     setGameModal(true);
   };
+
+  const handleCloseInput = () => setInputModal(false);
+  const handleCloseGame = () => setGameModal(false);
 
   return (
     <>
@@ -68,11 +72,12 @@ function Home() {
       {/*Modal Input Code */}
       <Modal
         show={showInputModal}
+        onHide={handleCloseInput}
         backdrop="static"
         keyboard={false}
         style={{ top: "30%" }}
       >
-        <Modal.Header>
+        <Modal.Header closeButton>
           <Modal.Title>Input a Code</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -95,11 +100,12 @@ function Home() {
       {/* Modal to Create a Game */}
       <Modal
         show={showGameModal}
+        onHide={handleCloseGame}
         backdrop="static"
         keyboard={false}
         style={{ top: "30%" }}
       >
-        <Modal.Header>
+        <Modal.Header closeButton>
           <Modal.Title>Create a Game</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -147,7 +153,13 @@ function Home() {
       <Container>
         <TableContainer>
           <Row>
-            <Table />
+            <Table>
+              <PotMarkerContainer>
+                <PotMarker>
+                  <p className="white">Pot: $0.00</p>
+                </PotMarker>
+              </PotMarkerContainer>
+            </Table>
             <Button
               style={{ backgroundColor: "#003a62", border: "none" }}
               onClick={DealNewHand}
