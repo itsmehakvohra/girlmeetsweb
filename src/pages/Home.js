@@ -13,6 +13,7 @@ import { TableContainer } from "../components/layout/TableContainer";
 import { createDeck, shuffleDeck } from "../components/deck";
 
 import { BlindInput, ModalInput } from "../components/ModalInputs";
+import { BuyInButton, BuyInContainer, BuyInInput } from "../components/BuyIn";
 
 function Home() {
   const [deck, setDeck] = useState([]);
@@ -156,6 +157,10 @@ function Home() {
           </Row>
         </TableContainer>
       </Container>
+      <BuyInContainer>
+        <BuyInInput type="number" placeholder="$10.00" />
+        <BuyInButton>Buy In</BuyInButton>
+      </BuyInContainer>
     </>
   );
 }
