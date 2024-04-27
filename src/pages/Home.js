@@ -15,6 +15,7 @@ import { createDeck, shuffleDeck } from "../components/deck";
 import { BlindInput, ModalInput } from "../components/ModalInputs";
 import { BuyInButton, BuyInContainer, BuyInInput } from "../components/BuyIn";
 import { PotMarker, PotMarkerContainer } from "../components/Pot";
+import { OpenMarker } from "../components/OpenMarker";
 
 function Home() {
   const [deck, setDeck] = useState([]);
@@ -55,8 +56,8 @@ function Home() {
           <Modal.Title>Girl Meets Web Poker Club ♠️</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Welcome! You can either create or join a poker game using the options
-          below.
+          Welcome! Please decide if you would like to create a game or join a
+          game using a code. Each game has a maximum of 8 players.
           <br /> <br />- M
         </Modal.Body>
         <Modal.Footer>
@@ -168,6 +169,14 @@ function Home() {
             </Button>
           </Row>
         </TableContainer>
+        <OpenMarker style={{ left: "30%", top: "75%" }}>Open</OpenMarker>
+        <OpenMarker style={{ left: "12%", top: "58%" }}>Open</OpenMarker>
+        <OpenMarker style={{ left: "12%", top: "25%" }}>Open</OpenMarker>
+        <OpenMarker style={{ left: "30%", top: "12%" }}>Open</OpenMarker>
+        <OpenMarker style={{ left: "70%", top: "12%" }}>Open</OpenMarker>
+        <OpenMarker style={{ left: "89%", top: "25%" }}>Open</OpenMarker>
+        <OpenMarker style={{ left: "89%", top: "58%" }}>Open</OpenMarker>
+        <OpenMarker style={{ left: "70%", top: "75%" }}>Open</OpenMarker>
       </Container>
       <BuyInContainer>
         <BuyInInput type="number" placeholder="$10.00" />
