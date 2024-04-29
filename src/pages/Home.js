@@ -15,9 +15,16 @@ import { createDeck, shuffleDeck } from "../components/deck";
 import { BlindInput, ModalInput } from "../components/ModalInputs";
 import { BuyInButton, BuyInContainer, BuyInInput } from "../components/BuyIn";
 import { PotMarker, PotMarkerContainer } from "../components/Pot";
-import { OpenMarker } from "../components/OpenMarker";
+import { OpenMarker, TakenMarker } from "../components/OpenMarker";
 
 function Home() {
+  const [players, setPlayers] = useState([
+    { id: 1, playerName: "One", buyChipsNum: "10" },
+    { id: 2, playerName: "Two", buyChipsNum: "30" },
+    { id: 3, playerName: "Three", buyChipsNum: "25" },
+    { id: 4, playerName: "Four", buyChipsNum: "10" },
+  ]);
+
   const [deck, setDeck] = useState([]);
   const [show, setShow] = useState(true);
   const [showInputModal, setInputModal] = useState(false);
@@ -169,12 +176,66 @@ function Home() {
             </Button>
           </Row>
         </TableContainer>
-        <OpenMarker style={{ left: "30%", top: "75%" }}>Open</OpenMarker>
-        <OpenMarker style={{ left: "12%", top: "58%" }}>Open</OpenMarker>
-        <OpenMarker style={{ left: "12%", top: "25%" }}>Open</OpenMarker>
-        <OpenMarker style={{ left: "30%", top: "12%" }}>Open</OpenMarker>
-        <OpenMarker style={{ left: "70%", top: "12%" }}>Open</OpenMarker>
-        <OpenMarker style={{ left: "89%", top: "25%" }}>Open</OpenMarker>
+        {!players || !players[0] ? (
+          <OpenMarker style={{ left: "30%", top: "75%" }}>Open</OpenMarker>
+        ) : (
+          <TakenMarker style={{ left: "30%", top: "75%" }}>
+            <p className="mb-0">
+              <b>{players[0].playerName}</b>
+              <br />
+              {players[0].buyChipsNum}c
+            </p>
+          </TakenMarker>
+        )}
+        {!players || !players[1] ? (
+          <OpenMarker style={{ left: "12%", top: "58%" }}>Open</OpenMarker>
+        ) : (
+          <TakenMarker style={{ left: "12%", top: "58%" }}>
+            <p className="mb-0">
+              <b>{players[0].playerName}</b>
+              <br />
+              {players[0].buyChipsNum}c
+            </p>
+          </TakenMarker>
+        )}
+        {!players || !players[2] ? (
+          <OpenMarker style={{ left: "12%", top: "25%" }}>Open</OpenMarker>
+        ) : (
+          <TakenMarker style={{ left: "12%", top: "25%" }}>
+            <p className="mb-0">
+              <b>{players[0].playerName}</b>
+              <br />
+              {players[0].buyChipsNum}c
+            </p>
+          </TakenMarker>
+        )}
+        {!players || !players[3] ? (
+          <OpenMarker style={{ left: "30%", top: "12%" }}>Open</OpenMarker>
+        ) : (
+          <TakenMarker style={{ left: "30%", top: "12%" }}>
+            <p className="mb-0">
+              <b>{players[0].playerName}</b>
+              <br />
+              {players[0].buyChipsNum}c
+            </p>
+          </TakenMarker>
+        )}
+        {!players || !players[4] ? (
+          <OpenMarker style={{ left: "70%", top: "12%" }}>Open</OpenMarker>
+        ) : (
+          <TakenMarker style={{ left: "70%", top: "12%" }}>
+            <p className="mb-0">
+              <b>{players[0].playerName}</b>
+              <br />
+              {players[0].buyChipsNum}c
+            </p>
+          </TakenMarker>
+        )}
+        {!players || !players[5] ? (
+          <OpenMarker style={{ left: "89%", top: "25%" }}>Open</OpenMarker>
+        ) : (
+          <></>
+        )}
         <OpenMarker style={{ left: "89%", top: "58%" }}>Open</OpenMarker>
         <OpenMarker style={{ left: "70%", top: "75%" }}>Open</OpenMarker>
       </Container>
