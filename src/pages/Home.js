@@ -48,6 +48,31 @@ function Home() {
     setGameModal(true);
   };
 
+  const DealCards = () => {
+    if (dealPhase <= 3) {
+      let cardsToDeal;
+      switch (dealPhase) {
+        case 1:
+          cardsToDeal = 3;
+          break;
+        case 2:
+        case 3:
+          cardsToDeal = 1;
+          break;
+        default:
+          break;
+      }
+
+      setCommunityCards(communityCards.concat(deck.slice(0, cardsToDeal)));
+      console.log(
+        "communitycards",
+        communityCards.concat(deck.slice(0, cardsToDeal))
+      );
+      setDeck(deck.slice(cardsToDeal));
+      setDealPhase(dealPhase + 1);
+    }
+  };
+
   const handleCloseInput = () => setInputModal(false);
   const handleCloseGame = () => setGameModal(false);
 
@@ -192,9 +217,9 @@ function Home() {
         ) : (
           <TakenMarker style={{ left: "12%", top: "58%" }}>
             <p className="mb-0">
-              <b>{players[0].playerName}</b>
+              <b>{players[1].playerName}</b>
               <br />
-              {players[0].buyChipsNum}c
+              {players[1].buyChipsNum}c
             </p>
           </TakenMarker>
         )}
@@ -203,9 +228,9 @@ function Home() {
         ) : (
           <TakenMarker style={{ left: "12%", top: "25%" }}>
             <p className="mb-0">
-              <b>{players[0].playerName}</b>
+              <b>{players[2].playerName}</b>
               <br />
-              {players[0].buyChipsNum}c
+              {players[2].buyChipsNum}c
             </p>
           </TakenMarker>
         )}
@@ -214,9 +239,9 @@ function Home() {
         ) : (
           <TakenMarker style={{ left: "30%", top: "12%" }}>
             <p className="mb-0">
-              <b>{players[0].playerName}</b>
+              <b>{players[3].playerName}</b>
               <br />
-              {players[0].buyChipsNum}c
+              {players[3].buyChipsNum}c
             </p>
           </TakenMarker>
         )}
@@ -225,19 +250,45 @@ function Home() {
         ) : (
           <TakenMarker style={{ left: "70%", top: "12%" }}>
             <p className="mb-0">
-              <b>{players[0].playerName}</b>
+              <b>{players[4].playerName}</b>
               <br />
-              {players[0].buyChipsNum}c
+              {players[4].buyChipsNum}c
             </p>
           </TakenMarker>
         )}
         {!players || !players[5] ? (
           <OpenMarker style={{ left: "89%", top: "25%" }}>Open</OpenMarker>
         ) : (
-          <></>
+          <TakenMarker style={{ left: "89%", top: "25%" }}>
+            <p className="mb-0">
+              <b>{players[5].playerName}</b>
+              <br />
+              {players[5].buyChipsNum}c
+            </p>
+          </TakenMarker>
         )}
-        <OpenMarker style={{ left: "89%", top: "58%" }}>Open</OpenMarker>
-        <OpenMarker style={{ left: "70%", top: "75%" }}>Open</OpenMarker>
+        {!players || !players[6] ? (
+          <OpenMarker style={{ left: "89%", top: "58%" }}>Open</OpenMarker>
+        ) : (
+          <TakenMarker style={{ left: "89%", top: "58%" }}>
+            <p className="mb-0">
+              <b>{players[6].playerName}</b>
+              <br />
+              {players[6].buyChipsNum}c
+            </p>
+          </TakenMarker>
+        )}
+        {!players || !players[7] ? (
+          <OpenMarker style={{ left: "70%", top: "75%" }}>Open</OpenMarker>
+        ) : (
+          <TakenMarker style={{ left: "70%", top: "75%" }}>
+            <p className="mb-0">
+              <b>{players[7].playerName}</b>
+              <br />
+              {players[7].buyChipsNum}c
+            </p>
+          </TakenMarker>
+        )}
       </Container>
       <BuyInContainer>
         <BuyInInput type="number" placeholder="$10.00" />
