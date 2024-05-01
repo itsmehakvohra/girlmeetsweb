@@ -26,9 +26,16 @@ function Home() {
   ]);
 
   const [deck, setDeck] = useState([]);
+  const [communityCards, setCommunityCards] = useState([]);
+
   const [show, setShow] = useState(true);
   const [showInputModal, setInputModal] = useState(false);
   const [showGameModal, setGameModal] = useState(false);
+
+  const [dealPhase, setDealPhase] = useState(1);
+
+  const [smallBlind, setSmallBlind] = useState("");
+  const [bigBlind, setBigBlind] = useState("");
 
   const DealNewHand = () => {
     const newDeck = shuffleDeck(createDeck());
@@ -64,12 +71,13 @@ function Home() {
       }
 
       setCommunityCards(communityCards.concat(deck.slice(0, cardsToDeal)));
-      console.log(
-        "communitycards",
-        communityCards.concat(deck.slice(0, cardsToDeal))
-      );
       setDeck(deck.slice(cardsToDeal));
       setDealPhase(dealPhase + 1);
+    } else {
+      // Reset for the next round and deal new player hands
+      setCommunityCards([]);
+      setDealPhase(1);
+      DealNewHand();
     }
   };
 
@@ -192,10 +200,25 @@ function Home() {
                   <p className="white">Pot: $0.00</p>
                 </PotMarker>
               </PotMarkerContainer>
+
+              {communityCards.map((card, index) => (
+                <>
+                  <img
+                    key={index}
+                    src={""}
+                    alt={`${card.value} of ${card.suit}`}
+                    style={{
+                      maxHeight: "185px",
+                      marginRight: "10px",
+                      marginTop: "20px",
+                    }}
+                  />
+                </>
+              ))}
             </Table>
             <Button
               style={{ backgroundColor: "#003a62", border: "none" }}
-              onClick={DealNewHand}
+              onClick={DealCards}
             >
               Deal Cards
             </Button>
