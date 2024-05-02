@@ -15,7 +15,7 @@ import { createDeck, shuffleDeck } from "../components/deck";
 import { BlindInput, ModalInput } from "../components/ModalInputs";
 import { BuyInButton, BuyInContainer, BuyInInput } from "../components/BuyIn";
 import { PotMarker, PotMarkerContainer } from "../components/Pot";
-import { OpenMarker, TakenMarker } from "../components/OpenMarker";
+import PlayerMarkers from "../components/PlayerMarkers";
 
 function Home() {
   const [players, setPlayers] = useState([
@@ -205,7 +205,7 @@ function Home() {
                 <>
                   <img
                     key={index}
-                    src={""}
+                    src={require(`../components/cards/${card.value}_of_${card.suit}.png`)}
                     alt={`${card.value} of ${card.suit}`}
                     style={{
                       maxHeight: "185px",
@@ -224,94 +224,7 @@ function Home() {
             </Button>
           </Row>
         </TableContainer>
-        {!players || !players[0] ? (
-          <OpenMarker style={{ left: "30%", top: "75%" }}>Open</OpenMarker>
-        ) : (
-          <TakenMarker style={{ left: "30%", top: "75%" }}>
-            <p className="mb-0">
-              <b>{players[0].playerName}</b>
-              <br />
-              {players[0].buyChipsNum}c
-            </p>
-          </TakenMarker>
-        )}
-        {!players || !players[1] ? (
-          <OpenMarker style={{ left: "12%", top: "58%" }}>Open</OpenMarker>
-        ) : (
-          <TakenMarker style={{ left: "12%", top: "58%" }}>
-            <p className="mb-0">
-              <b>{players[1].playerName}</b>
-              <br />
-              {players[1].buyChipsNum}c
-            </p>
-          </TakenMarker>
-        )}
-        {!players || !players[2] ? (
-          <OpenMarker style={{ left: "12%", top: "25%" }}>Open</OpenMarker>
-        ) : (
-          <TakenMarker style={{ left: "12%", top: "25%" }}>
-            <p className="mb-0">
-              <b>{players[2].playerName}</b>
-              <br />
-              {players[2].buyChipsNum}c
-            </p>
-          </TakenMarker>
-        )}
-        {!players || !players[3] ? (
-          <OpenMarker style={{ left: "30%", top: "12%" }}>Open</OpenMarker>
-        ) : (
-          <TakenMarker style={{ left: "30%", top: "12%" }}>
-            <p className="mb-0">
-              <b>{players[3].playerName}</b>
-              <br />
-              {players[3].buyChipsNum}c
-            </p>
-          </TakenMarker>
-        )}
-        {!players || !players[4] ? (
-          <OpenMarker style={{ left: "70%", top: "12%" }}>Open</OpenMarker>
-        ) : (
-          <TakenMarker style={{ left: "70%", top: "12%" }}>
-            <p className="mb-0">
-              <b>{players[4].playerName}</b>
-              <br />
-              {players[4].buyChipsNum}c
-            </p>
-          </TakenMarker>
-        )}
-        {!players || !players[5] ? (
-          <OpenMarker style={{ left: "89%", top: "25%" }}>Open</OpenMarker>
-        ) : (
-          <TakenMarker style={{ left: "89%", top: "25%" }}>
-            <p className="mb-0">
-              <b>{players[5].playerName}</b>
-              <br />
-              {players[5].buyChipsNum}c
-            </p>
-          </TakenMarker>
-        )}
-        {!players || !players[6] ? (
-          <OpenMarker style={{ left: "89%", top: "58%" }}>Open</OpenMarker>
-        ) : (
-          <TakenMarker style={{ left: "89%", top: "58%" }}>
-            <p className="mb-0">
-              <b>{players[6].playerName}</b>
-              <br />
-              {players[6].buyChipsNum}c
-            </p>
-          </TakenMarker>
-        )}
-        {!players || !players[7] ? (
-          <OpenMarker style={{ left: "70%", top: "75%" }}>Open</OpenMarker>
-        ) : (
-          <TakenMarker style={{ left: "70%", top: "75%" }}>
-            <p className="mb-0">
-              <b>{players[7].playerName}</b>
-              <br />
-              {players[7].buyChipsNum}c
-            </p>
-          </TakenMarker>
-        )}
+        <PlayerMarkers players={players} />
       </Container>
       <BuyInContainer>
         <BuyInInput type="number" placeholder="$10.00" />
