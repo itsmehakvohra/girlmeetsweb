@@ -16,6 +16,7 @@ import { BlindInput, ModalInput } from "../components/ModalInputs";
 import { BuyInButton, BuyInContainer, BuyInInput } from "../components/BuyIn";
 import { PotMarker, PotMarkerContainer } from "../components/Pot";
 import PlayerMarkers from "../components/PlayerMarkers";
+import ModalIntro from "../components/modal/ModalIntro";
 
 function Home() {
   const [players, setPlayers] = useState([
@@ -86,97 +87,84 @@ function Home() {
 
   return (
     <>
-      <Modal
+      <ModalIntro
         show={show}
-        backdrop="static"
-        keyboard={false}
-        style={{ top: "30%" }}
-      >
-        <Modal.Header>
-          <Modal.Title>Girl Meets Web Poker Club ♠️</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Welcome! Please decide if you would like to create a game or join a
-          game using a code. Each game has a maximum of 8 players.
-          <br /> <br />- M
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={openInputModal}>
-            Input Code
-          </Button>
-          <Button variant="primary" onClick={openGameModal}>
-            Create a Game
-          </Button>
-        </Modal.Footer>
-      </Modal>
+        title={"Girl Meets Web Poker Club ♠️"}
+        body={
+          "  Welcome! Please decide if you would like to create a game or join a game using a code. Each game has a maximum of 8 players. - M"
+        }
+        footer={
+          <>
+            <Button variant="secondary" onClick={openInputModal}>
+              Input Code
+            </Button>
+            <Button variant="primary" onClick={openGameModal}>
+              Create a Game
+            </Button>
+          </>
+        }
+      />
 
       {/*Modal Input Code */}
-      <Modal
+      <ModalIntro
         show={showInputModal}
         onHide={handleCloseInput}
-        backdrop="static"
-        keyboard={false}
-        style={{ top: "30%" }}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Input a Code</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p className="mb-10">
-            <b>Your Name</b>
-          </p>
-          <ModalInput onChange={(e) => setName(e.target.value)} />
-          <p className="mt-20 mb-10">
-            <b>Code</b>
-          </p>
-          <ModalInput onChange={(e) => setGameCode(e.target.value)} />
-        </Modal.Body>
-        <Modal.Footer>
+        title={"Input a Code"}
+        body={
+          <>
+            <p className="mb-10">
+              <b>Your Name</b>
+            </p>
+            <ModalInput onChange={(e) => setName(e.target.value)} />
+            <p className="mt-20 mb-10">
+              <b>Code</b>
+            </p>
+            <ModalInput onChange={(e) => setGameCode(e.target.value)} />
+          </>
+        }
+        footer={
           <Button variant="primary" onClick={""}>
             Enter Game
           </Button>
-        </Modal.Footer>
-      </Modal>
+        }
+      />
 
       {/* Modal to Create a Game */}
-      <Modal
+      <ModalInput
         show={showGameModal}
         onHide={handleCloseGame}
-        backdrop="static"
-        keyboard={false}
-        style={{ top: "30%" }}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Create a Game</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p className="mb-10">
-            <b>Your Name</b>
-          </p>{" "}
-          <ModalInput onChange={(e) => setName(e.target.value)} />
-          <p className="mt-20 mb-10">
-            <b>Blinds (Chips)</b>
-          </p>{" "}
-          <InputGroup>
-            <BlindInput
-              placeholder="SB"
-              onChange={(e) => setSmallBlind(e.target.value)}
-            />{" "}
-            <p className="mr-10 ml-10">
-              <b>/</b>
+        title={"Create a Game"}
+        body={
+          <>
+            {" "}
+            <p className="mb-10">
+              <b>Your Name</b>
             </p>{" "}
-            <BlindInput
-              placeholder="BB"
-              onChange={(e) => setBigBlind(e.target.value)}
-            />
-          </InputGroup>
-        </Modal.Body>
-        <Modal.Footer>
+            <ModalInput onChange={(e) => setName(e.target.value)} />
+            <p className="mt-20 mb-10">
+              <b>Blinds (Chips)</b>
+            </p>{" "}
+            <InputGroup>
+              <BlindInput
+                placeholder="SB"
+                onChange={(e) => setSmallBlind(e.target.value)}
+              />{" "}
+              <p className="mr-10 ml-10">
+                <b>/</b>
+              </p>{" "}
+              <BlindInput
+                placeholder="BB"
+                onChange={(e) => setBigBlind(e.target.value)}
+              />
+            </InputGroup>{" "}
+          </>
+        }
+        footer={
           <Button variant="primary" onClick={""}>
             Get Started
           </Button>
-        </Modal.Footer>
-      </Modal>
+        }
+      />
 
       <Navbar expand="lg" className="bg-body-tertiary">
         <Container>
