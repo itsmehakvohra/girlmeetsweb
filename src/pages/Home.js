@@ -1,22 +1,15 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Navbar,
-  Nav,
-  Row,
-  Button,
-  Modal,
-  InputGroup,
-} from "react-bootstrap";
+import { Container, Row, Button } from "react-bootstrap";
 import { Table } from "../components/table";
-import { TableContainer } from "../components/layout/TableContainer";
+import { TableContainer } from "../components/layout/ContainerTable";
 import { createDeck, shuffleDeck } from "../components/deck";
 
-import { BlindInput, ModalInput } from "../components/ModalInputs";
+import { ModalInput } from "../components/modal/ModalInputs";
 import { BuyInButton, BuyInContainer, BuyInInput } from "../components/BuyIn";
 import { PotMarker, PotMarkerContainer } from "../components/Pot";
 import PlayerMarkers from "../components/PlayerMarkers";
 import ModalIntro from "../components/modal/ModalIntro";
+import MyNavbar from "../components/layout/MyNavBar";
 
 function Home() {
   const [players, setPlayers] = useState([
@@ -130,13 +123,12 @@ function Home() {
       />
 
       {/* Modal to Create a Game */}
-      <ModalInput
+      {/* <ModalInput
         show={showGameModal}
         onHide={handleCloseGame}
         title={"Create a Game"}
         body={
           <>
-            {" "}
             <p className="mb-10">
               <b>Your Name</b>
             </p>{" "}
@@ -159,26 +151,9 @@ function Home() {
             </InputGroup>{" "}
           </>
         }
-        footer={
-          <Button variant="primary" onClick={""}>
-            Get Started
-          </Button>
-        }
-      />
+      /> */}
 
-      <Navbar expand="lg" className="bg-body-tertiary">
-        <Container>
-          <Navbar.Brand>Girl Meets Web</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse>
-            <Nav>
-              <Nav.Link href="#">Home</Nav.Link>
-              <Nav.Link href="#">About</Nav.Link>
-              <Nav.Link href="#">Contact Us</Nav.Link>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <MyNavbar />
       <Container>
         <TableContainer>
           <Row>
@@ -187,6 +162,16 @@ function Home() {
                 <PotMarker>
                   <p className="white">Pot: $0.00</p>
                 </PotMarker>
+                <Button
+                  style={{
+                    backgroundColor: "Green",
+                    border: "none",
+                    marginLeft: "20px",
+                  }}
+                  onClick={DealCards}
+                >
+                  Deal Cards
+                </Button>
               </PotMarkerContainer>
 
               {communityCards.map((card, index) => (
@@ -204,12 +189,6 @@ function Home() {
                 </>
               ))}
             </Table>
-            <Button
-              style={{ backgroundColor: "#003a62", border: "none" }}
-              onClick={DealCards}
-            >
-              Deal Cards
-            </Button>
           </Row>
         </TableContainer>
         <PlayerMarkers players={players} />
